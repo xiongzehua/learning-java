@@ -1,4 +1,4 @@
-package com.xiongzehua.learning.java.Enum;
+package com.xiongzehua.learning.java._enum;
 
 /**
  * 枚举实现多种状态

@@ -1,4 +1,4 @@
-package com.xiongzehua.learning.java.Enum;
+package com.xiongzehua.learning.java._enum;
 
 /**
  * 只需要一行代码便可实现单例，且不会出现懒汉式类似的线程安全问题

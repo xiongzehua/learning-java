@@ -1,4 +1,4 @@
-package com.xiongzehua.learning.java.Enum;
+package com.xiongzehua.learning.java._enum;
 
 import org.junit.Test;
 
