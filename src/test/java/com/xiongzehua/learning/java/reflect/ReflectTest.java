@@ -1,15 +1,14 @@
 package com.xiongzehua.learning.java.reflect;
 
+import com.xiongzehua.learning.java.annotation.MarkA;
 import com.xiongzehua.learning.java.pojo.Person;
 import com.xiongzehua.learning.java.pojo.Student;
 import org.junit.Test;
-import java.io.*;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
-import java.util.Scanner;
-
 
 /**
  *
@@ -29,9 +28,9 @@ public class ReflectTest {
      */
     @Test
     public void test1() throws ClassNotFoundException{
-        Person p1 = new Person("zhang3", "21");
-        Person p2 = new Student("li4", "22", "NJU");
-        Student s3 = new Student("wang5", "23", "SCU");
+        Person p1 = new Person("zhang3", 21);
+        Person p2 = new Student("li4", 22, "NJU");
+        Student s3 = new Student("wang5", 23, "SCU");
 
         Class clazz1 = p1.getClass();
         Class clazz2 = p2.getClass();
@@ -64,7 +63,7 @@ public class ReflectTest {
         Class clazz1 = Student.class;
 
         // 2.任何对象都持有其运行时类型所对应的Class<T>对象
-        Class clazz2 = new Student("li4", "22", "NJU").getClass();
+        Class clazz2 = new Student("li4", 22, "NJU").getClass();
 
         // 3.通过静态方法Class.forName("类名的全限定形式")返回对应的Class<T>对象    --核心
         Class clazz3 = null;
@@ -82,7 +81,7 @@ public class ReflectTest {
      */
     @Test
     public void test3() {
-        // 0.前提条件先获取类的对应Class<T>对象
+        // 0.前提条件先获取类对应的Class<T>对象
         Class clazz = null;
         try {
             clazz  = Class.forName("com.xiongzehua.learning.java.pojo.Student");
@@ -115,11 +114,57 @@ public class ReflectTest {
 
         // 3.获取Student类的注解
         Annotation[] annotations = clazz.getAnnotations();
-
-
+        for (Annotation annotation : annotations) {
+            System.out.println(annotation);
+            System.out.println("是否是MarkA：" + (annotation.annotationType() == MarkA.class));
+        }
     }
 
+    /**
+     * 4 调用指定方法
+     * 完全使用反射来创造并使用一个对象
+     */
     @Test
     public void test4() {
+        // 1.前提条件先获取类对应的Class<T>对象
+        Class clazz = null;
+        try {
+            clazz  = Class.forName("com.xiongzehua.learning.java.pojo.Student");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        // 2.使用Class<T>对象生成Student对象
+        Object obj = null;
+        try {
+            obj = clazz.newInstance();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+
+        // 3.使用Class<T>对象生成方法对象
+        Method method1 = null, method2 = null, method3 = null, method4 = null;
+        try {
+            method1 = clazz.getMethod("setName", String.class);
+            method2 = clazz.getMethod("setAge", int.class);
+            method3 = clazz.getMethod("setSchool", String.class);
+            method4 = clazz.getMethod("info");
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        }
+
+        // 4.执行方法
+        try {
+            method1.invoke(obj, "zhang3");
+            method2.invoke(obj, 20);
+            method3.invoke(obj, "NJU");
+            System.out.println(method4.invoke(obj));
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        }
     }
 }

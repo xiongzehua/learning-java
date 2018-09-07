@@ -10,7 +10,7 @@ import com.xiongzehua.learning.java.annotation.MarkB;
 public class Student extends Person {
     public String school;
 
-    public Student(String name, String age, String school) {
+    public Student(String name, int age, String school) {
         super(name, age);
         this.school = school;
     }
