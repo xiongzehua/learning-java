@@ -3,6 +3,8 @@ package com.xiongzehua.learning.java._enum;
 import org.junit.Test;
 
 /**
+ * enum讲解
+ *
  * Enum关键字本质是 Class关键字的语法糖，也是用来声明一个类型
  * 但是 Enum声明的类型不能实例化，所有他已经持有几个实例化好的静态成员对象以供使用
  *
@@ -15,7 +17,7 @@ import org.junit.Test;
 public class EnumTest {
 
     /**
-     * 用法一：作为方法参数
+     * 1.用法一：作为方法参数
      * 方法参数类型的作用是限定，用以告知调用者此方法只能处理某类对象
      * 枚举本质是在这个基础上做了更加严格的限定，用以告知调用者此方法只能处理某几个对象，而不仅仅是某类对象
      */
@@ -53,7 +55,7 @@ public class EnumTest {
 
 
     /**
-     * 用法二：用作 switch语句的参数
+     * 2.用法二：用作 switch语句的参数
      * 枚举比 int和 String更适合作为 switch的输入类型
      * 因为枚举天生便是对象数量有限的，只要 case能涵盖所以枚举对象，便可以不加 default
      */
@@ -78,7 +80,7 @@ public class EnumTest {
 
 
     /**
-     * 应用三：利用枚举来实现单例
+     * 3.应用三：利用枚举来实现单例
      * 优点：代码量少，不会出现线程安全问题
      */
     @Test
@@ -94,5 +96,13 @@ public class EnumTest {
         DBConnection con2 = DataSourceSingleton.INSTANCE.getConnection();
         //验证是否为单例
         System.out.println(con1 == con2);
+    }
+
+    /**
+     * 4.enum的底层实现：使用class来实现一个 SeasonEnum
+     */
+    @Test
+    public void test4() {
+
     }
 }

@@ -7,6 +7,7 @@ package com.xiongzehua.learning.java._enum;
  */
 public enum DataSourceSingleton {
     INSTANCE;
+
     private DBConnection con = null;
     private DataSourceSingleton() {
         con = new DBConnection();

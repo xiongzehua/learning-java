@@ -12,10 +12,10 @@ public enum SeasonEnum {
     SPRING("春天"), SUMMER("夏天"), AUTUMN("秋天"), WINTER("冬天");
 
     private final String seasonName;
-    SeasonEnum(String seasonName) {
+    private SeasonEnum(String seasonName) {
         this.seasonName = seasonName;
     }
-    String getSeasonName() {
+    public String getSeasonName() {
         return seasonName;
     }
 }
