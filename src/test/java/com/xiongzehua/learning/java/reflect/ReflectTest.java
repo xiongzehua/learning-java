@@ -144,7 +144,6 @@ public class ReflectTest {
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         }
-
         // 3.使用Class<T>对象生成方法对象
         Method method1 = null, method2 = null, method3 = null, method4 = null;
         try {
@@ -155,7 +154,6 @@ public class ReflectTest {
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
         }
-
         // 4.执行方法
         try {
             method1.invoke(obj, "zhang3");
@@ -167,6 +165,7 @@ public class ReflectTest {
         } catch (InvocationTargetException e) {
             e.printStackTrace();
         }
+
     }
 
     @Test
